@@ -14,7 +14,7 @@
 //   const fetchWorkoutLogs = async () => {
 //     try {
 //       const response = await axios.get(
-//         `http://localhost:8080/api/workouts/${userEmail}`
+//         `http://localhost:8081/api/workouts/${userEmail}`
 //       );
 //       console.log("Fetched workout logs:", response.data); // Log the fetched data
 //       setWorkoutLogs(response.data); // Set the fetched workout logs
@@ -33,7 +33,7 @@
 //   const handleAddWorkout = async (workout) => {
 //     try {
 //       const response = await axios.post(
-//         `http://localhost:8080/api/workouts/${userEmail}`,
+//         `http://localhost:8081/api/workouts/${userEmail}`,
 //         {
 //           ...workout,
 //           duration: parseInt(workout.duration),
@@ -116,7 +116,7 @@
 //   const fetchWorkoutLogs = async () => {
 //     try {
 //       const response = await axios.get(
-//         `http://localhost:8080/api/workouts/${userEmail}`
+//         `http://localhost:8081/api/workouts/${userEmail}`
 //       );
 //       setWorkoutLogs(response.data);
 //     } catch (error) {
@@ -132,7 +132,7 @@
 
 //   const handleAddWorkout = async (workout) => {
 //     try {
-//       await axios.post(`http://localhost:8080/api/workouts/${userEmail}`, {
+//       await axios.post(`http://localhost:8081/api/workouts/${userEmail}`, {
 //         ...workout,
 //         duration: parseInt(workout.duration),
 //         calories: parseInt(workout.calories),
@@ -220,7 +220,7 @@ const Dashboard = () => {
   const fetchWorkoutLogs = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/workouts/${userEmail}`
+        `http://localhost:8081/api/workouts/${userEmail}`
       );
       setWorkoutLogs(response.data);
     } catch (error) {
@@ -237,7 +237,7 @@ const Dashboard = () => {
   const handleAddWorkout = async (workout) => {
     try {
       const response = await axios.post(
-        `http://localhost:8080/api/workouts/${userEmail}`,
+        `http://localhost:8081/api/workouts/${userEmail}`,
         {
           ...workout,
           duration: parseInt(workout.duration),

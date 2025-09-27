@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './AuthPage.css';
 
 const Login = ({ setIsLoggedIn }) => {
@@ -12,7 +12,7 @@ const Login = ({ setIsLoggedIn }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:8080/api/users/login', {
+      const res = await axios.post('http://localhost:8081/api/users/login', {
         email,
         password
       });
@@ -26,7 +26,11 @@ const Login = ({ setIsLoggedIn }) => {
       }
     } catch (err) {
       console.error(err);
-      setMessage('Login failed.');
+      if (err.response && err.response.data) {
+        setMessage(err.response.data);
+      } else {
+        setMessage('Login failed.');
+      }
     }
   };
 
@@ -34,7 +38,7 @@ const Login = ({ setIsLoggedIn }) => {
     <div className="auth-container">
       <div className="auth-box">
         <h2>Login</h2>
-        {message && <div className="success-message">{message}</div>}
+        {message && <div className={message.includes('successful') ? 'success-message' : 'error-message'}>{message}</div>}
         <form onSubmit={handleLogin}>
           <div className="input-group">
             <label>Email</label>
@@ -46,7 +50,7 @@ const Login = ({ setIsLoggedIn }) => {
           </div>
           <button className="auth-button">Login</button>
         </form>
-        <p>Don't have an account? <a href="/register">Register here</a></p>
+        <p>Don't have an account? <Link to="/register">Register here</Link></p>
       </div>
     </div>
   );
